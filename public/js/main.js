@@ -3,7 +3,7 @@ const cityName = document.getElementById('cityName')
 const city = document.getElementById('city')
 const temp_data = document.getElementById('temp_data')
 const status = document.getElementById('status')
-const dataHide = document.querySelector('middle_layer')
+const dataHide = document.querySelector('.middle_layer')
 
 const getInfo = async (e) => {
     e.preventDefault();
@@ -18,7 +18,7 @@ const getInfo = async (e) => {
             const res = await fetch(url);
             const data = await res.json();
             const arrData = [data];
-            city.innerText = `${arrData[0].name}, ${arrData[0].sys.country}`;
+            city.innerHTML = `${arrData[0].name}, ${arrData[0].sys.country}`;
             temp_data.innerText = arrData[0].main.temp;
             const tempMood = arrData[0].weather[0].main;
 
@@ -37,9 +37,10 @@ const getInfo = async (e) => {
             dataHide.classList.remove('data_hide');
 
        }
-       catch {
+       catch(e) {
             city.innerText = "Please enter the name properly";
             dataHide.classList.add('data_hide');
+            console.log(e);
        }
     }
 }

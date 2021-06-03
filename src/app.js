@@ -14,19 +14,27 @@ app.use(express.static(staticPath));
 // app.use(express.static(viewsPath));
 
 app.get("/", (req, res) => {
-    res.render("index");
+    res.render("index", {
+        title: "Home"
+    });
 })
 
 app.get("/weather", (req, res) => {
-    res.render("weather");
+    res.render("weather", {
+        title: "Weather"
+    });
 })
 
 app.get("/about", (req, res) => {
-    res.render("about");
+    res.render("about", {
+        title: "About"
+    });
 })
 
 app.get("*", (req, res) => {
-    res.render("404");
+    res.render("404", {
+        title: "Error"
+    });
 })
 
 app.listen(port, () => {
